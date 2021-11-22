@@ -1,0 +1,71 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id     Int     @id @default(autoincrement())
+  name   String
+  userRoom  UserRoom[]
+  role   Role    @relation(fields: [roleId], references: [id])
+  roleId Int
+}
+
+model Role {
+  id   Int    @id @default(autoincrement())
+  name String
+  user User[]
+}
+
+model Room {
+  id    Int     @id @default(autoincrement())
+  userRoom UserRoom[]
+  story Story @relation(fields:[storyId],references:[id])
+  storyId Int
+}
+
+model UserRoom{
+     user            User              @relation(fields: [userId], references: [id])
+      userId          Int
+      room            Room              @relation(fields: [roomId], references: [id])
+      roomId          Int
+      @@id([userId,roomId])
+}
+
+model Story {
+  id Int @id @default(autoincrement())
+  title           String
+  room Room?
+  StoryEstimation StoryEstimation[]
+  result Result[]
+}
+model Result {
+    id Int @id @default(autoincrement())
+    name String
+    estimationPoint Int
+    story Story @relation(fields:[storyId], references:[id])
+    storyId Int
+}
+
+model Estimation {
+  id              Int               @id @default(autoincrement())
+  value           Int
+  StoryEstimation StoryEstimation[]
+}
+
+model StoryEstimation {
+  value        Int
+  story        Story      @relation(fields: [storyId], references: [id])
+  storyId       Int
+  estimation   Estimation @relation(fields: [estimationId], references: [id])
+  estimationId Int
+
+  @@id([storyId, estimationId])
+}
