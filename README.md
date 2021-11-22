@@ -15,4 +15,6 @@ API REST
 
 Redux toolkit
 
+Typescript
+
 ![Alt Text](https://raw.githubusercontent.com/Juandcode/Scrum-poker/master/ezgif-2-974cfe5cc4ed.gif)
