@@ -16,7 +16,10 @@ export const login = createAsyncThunk(
     async ({name, roomId}: { name: string, roomId: number }, {getState}) => {
         //console.log(getState())
         //console.log(selectLoading(getState() as { home: { loading: boolean; } }))
-        const response = await axios.post('http://localhost:4000/api/login', {username: name, roomId: roomId}, {
+        const response = await axios.post(`${process.env.REACT_APP_BACKEND_ENDPOINT}/login`, {
+            username: name,
+            roomId: roomId
+        }, {
             headers: {
                 "Access-Control-Allow-Origin": "*"
             }

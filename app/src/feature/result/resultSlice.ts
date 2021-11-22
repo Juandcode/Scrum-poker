@@ -16,7 +16,7 @@ const initialState = {} as InitialState
 export const getEstimationsStory = createAsyncThunk(
     "result/getEstimations",
     async (data, {getState}) => {
-        const res = await axios.post('http://localhost:4000/api/estimationsstory', {storyId: 1})
+        const res = await axios.post(`${process.env.REACT_APP_BACKEND_ENDPOINT}/estimationsstory`, {storyId: 1})
         return res.data.results
     }
 )

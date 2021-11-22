@@ -19,8 +19,8 @@ export const ResultPage = () => {
     return (
         <div
             className={'bg-gradient-to-r from-yellow-400 via-red-500 to-pink-500 w-full h-full h-full h-screen flex items-center justify-center flex-row overflow-auto'}>
-            {resultsEstimationStory && resultsEstimationStory.length > 0 && resultsEstimationStory.map((e) =>
-                <div className={'flex items-center flex-col'}>
+            {resultsEstimationStory && resultsEstimationStory.length > 0 && resultsEstimationStory.map((e, key) =>
+                <div key={key} className={'flex items-center flex-col'}>
                     <p className={'font-body font-bold'}>{e.name}</p>
                     <div
                         className={'w-32 h-40 bg-white rounded-2xl flex items-center justify-center m-2 transition-colors duration-500 ease-in-out hover:bg-blue-700'}>

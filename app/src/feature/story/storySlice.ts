@@ -21,7 +21,7 @@ export const getStory = createAsyncThunk(
     "story/get",
     async ({idUser, roomId, username}: { idUser: number, roomId: number, username: string }, {getState}) => {
         console.log(getState())
-        const res = await axios.post('http://localhost:4000/api/story', {idUser: 1, roomId: 1, username}, {
+        const res = await axios.post(`${process.env.REACT_APP_BACKEND_ENDPOINT}/story`, {idUser: 1, roomId: 1, username}, {
             headers: {
                 "Access-Control-Allow-Origin": "*"
             }
@@ -37,7 +37,7 @@ export const setEstimateStory = createAsyncThunk(
                storyId,
                userId
            }: { name: string, estimationPoint: number, storyId: number, userId: number }) => {
-        const response = await axios.post('http://localhost:4000/api/setEstimation', {
+        const response = await axios.post(`${process.env.REACT_APP_BACKEND_ENDPOINT}/setEstimation`, {
             name,
             estimationPoint,
             storyId,
